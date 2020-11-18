@@ -1,0 +1,3 @@
+[submodule "bpplib"]
+	path = experimental/bpplib
+	url = https://github.com/krulis-martin/bpplib.git

@@ -1,7 +1,7 @@
 CPP=g++
 STD=-std=c++14
 CFLAGS=-Wall -O3 $(STD) -DNDEBUG
-NVCCFLAGS=-ccbin $(CPP) $(STD) -arch=sm_52
+NVCCFLAGS=-ccbin $(CPP) $(STD) -arch=sm_50
 INCLUDE=/usr/local/cuda/include ./headers ../../bpplib/include
 LDFLAGS=
 LIBS=
@@ -22,7 +22,7 @@ all: $(TARGET)
 
 $(TARGET): $(HEADERS) $(CUOBJS) $(OBJS)
 	@echo Linking executable "$@" ...
-	@$(CPP) $(CFLAGS) $(addprefix -I,$(INCLUDE)) $(LDFLAGS) $(addprefix -L,$(LIBDIRS)) $(addprefix -l,$(LIBS)) -lcudart $(CUOBJS) $(OBJS) -o $@
+	@$(CPP) $(CFLAGS) $(addprefix -I,$(INCLUDE)) $(LDFLAGS) $(addprefix -L,$(LIBDIRS)) $(addprefix -l,$(LIBS)) $(CUOBJS) $(OBJS) -o $@ -lcudart
 
 %.obj: %.cpp $(HEADERS)
 	@echo Compiling CPP file $< ...
